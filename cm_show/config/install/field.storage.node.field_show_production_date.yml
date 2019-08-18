@@ -1,0 +1,20 @@
+uuid: dbe78ae9-3ea6-4a1a-8070-bc6df221bcfd
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_show_production_date
+field_name: field_show_production_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

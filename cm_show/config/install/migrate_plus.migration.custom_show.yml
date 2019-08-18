@@ -1,0 +1,42 @@
+id: custom_show
+label: Custom show node migration from Drupal 7
+migration_group: custom
+dependencies:
+  enforced:
+    module:
+      - cm_show
+source:
+  plugin: custom_show
+destination:
+  plugin: entity:node
+  bundle: show
+process:
+  nid: nid
+  vid: vid
+  type: type
+  langcode:
+    plugin: static_map
+    bypass: true
+    source: language
+    map:
+      und: en
+  title: title
+  uid: uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  'field_description/format':
+    plugin: static_map
+    bypass: true
+    source: body_format
+    map:
+      1: plain_text
+      2: restricted_html
+      3: full_html
+      4: full_html
+  'field_description/value': body_value
+  'field_description/summary': body_summary
+  field_show_tags: tags
+  field_show_production_date: date
