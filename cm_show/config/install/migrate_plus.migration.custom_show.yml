@@ -7,9 +7,10 @@ dependencies:
       - cm_show
 source:
   plugin: custom_show
+  node_type: show
 destination:
   plugin: entity:node
-  bundle: show
+  node_type: show
 process:
   nid: nid
   vid: vid
@@ -30,7 +31,7 @@ process:
   'field_description/format':
     plugin: static_map
     bypass: true
-    source: body_format
+    source: description_format
     map:
       1: plain_text
       2: restricted_html
@@ -40,4 +41,6 @@ process:
   'field_description/summary': description_summary
   field_show_tags: tags
   field_show_production_date: date
-
+  migration_dependencies:
+    required:
+      - my_migration_tags
