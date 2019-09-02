@@ -67,7 +67,7 @@ class Show extends SqlBase {
         fld.description_summary,
         fld.description_format
       FROM
-        {field_data_description} fld
+        {field_data_field_show_description} fld
       WHERE
         fld.entity_id = :nid
     ', array(':nid' => $nid));

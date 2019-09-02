@@ -1,0 +1,19 @@
+id: my_migration_tags
+status: true
+langcode: en
+migration_group: Taxonomies
+dependencies:
+  module:
+    - taxonomy
+label: Migrate Tags taxonomy terms
+source:
+  plugin: my_migration_tags
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: tags
+  name: name
+  description: description
+  weight: weight

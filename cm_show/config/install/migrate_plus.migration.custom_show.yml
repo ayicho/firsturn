@@ -36,7 +36,8 @@ process:
       2: restricted_html
       3: full_html
       4: full_html
-  'field_description/value': body_value
-  'field_description/summary': body_summary
+  'field_description/value': description_value
+  'field_description/summary': description_summary
   field_show_tags: tags
   field_show_production_date: date
+
