@@ -25,7 +25,7 @@ class Show extends SqlBase {
   public function query() {
     // this queries the built-in metadata, but not the description, tags, or images.
     $query = $this->select('node', 'n')
-      ->condition('n.type', 'show')
+      ->condition('n.type', 'cm_show')
       ->fields('n', array(
         'nid',
         'vid',
@@ -63,11 +63,11 @@ class Show extends SqlBase {
     // description (compound field with value, summary, and format)
     $result = $this->getDatabase()->query('
       SELECT
-        fld.description_value,
-        fld.description_summary,
-        fld.description_format
+        fld.field_description_value,
+        fld.field_description_summary,
+        fld.field_description_format
       FROM
-        {field_data_field_show_description} fld
+        {field_data_field_description} fld
       WHERE
         fld.entity_id = :nid
     ', array(':nid' => $nid));

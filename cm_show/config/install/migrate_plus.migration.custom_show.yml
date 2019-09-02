@@ -7,20 +7,21 @@ dependencies:
       - cm_show
 source:
   plugin: custom_show
-  node_type: show
+  node_type: cm_show
+  target: migrate
 destination:
   plugin: entity:node
-  node_type: show
+  node_type: cm_show
 process:
   nid: nid
   vid: vid
-  type: type
+  type:
+    plugin:default_value
+    default_value:cm_show
   langcode:
-    plugin: static_map
-    bypass: true
+    plugin: default_value
+    default_value: und
     source: language
-    map:
-      und: en
   title: title
   uid: uid
   status: status
