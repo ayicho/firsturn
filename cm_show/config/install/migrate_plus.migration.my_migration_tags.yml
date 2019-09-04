@@ -8,7 +8,6 @@ dependencies:
 label: Migrate Tags taxonomy terms
 source:
   plugin: my_migration_tags
-  target: migrate
 destination:
   plugin: entity:taxonomy_term
 process:

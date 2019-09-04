@@ -1,27 +1,17 @@
 id: custom_show
 label: Custom show node migration from Drupal 7
-migration_group: custom
-dependencies:
-  enforced:
-    module:
-      - cm_show
 source:
   plugin: custom_show
   node_type: cm_show
-  target: migrate
 destination:
   plugin: entity:node
-  node_type: cm_show
+  default_bundle: show
 process:
   nid: nid
   vid: vid
   type:
     plugin:default_value
-    default_value:cm_show
-  langcode:
-    plugin: default_value
-    default_value: und
-    source: language
+    default_value:show
   title: title
   uid: uid
   status: status
@@ -37,11 +27,5 @@ process:
       1: plain_text
       2: restricted_html
       3: full_html
-      4: full_html
   'field_description/value': description_value
   'field_description/summary': description_summary
-  field_show_tags: tags
-  field_show_production_date: date
-  migration_dependencies:
-    required:
-      - my_migration_tags

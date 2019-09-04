@@ -8,8 +8,5 @@ package: Custom
 # Dependencies
 dependencies:
   - migrate
-  - migrate_source_csv
   - migrate_plus
   - migrate_tools
-  - node
-  - taxonomy

@@ -57,6 +57,7 @@ class Show extends SqlBase {
   /**
    * {@inheritdoc}
    */
+
   public function prepareRow(Row $row) {
     $nid = $row->getSourceProperty('nid');
  
@@ -76,6 +77,20 @@ class Show extends SqlBase {
       $row->setSourceProperty('description_summary', $record->description_summary );
       $row->setSourceProperty('description_format', $record->description_format );
     }
+
+
+  /*  $result = $this->getDatabase()->query('
+      SELECT
+        fld.field_production_date,
+      FROM
+        {field_data_field_show_production_date} fld
+      WHERE
+        fld.entity_id = :nid
+    ', array(':nid' => $nid));
+    foreach ($result as $record) {
+      $row->setSourceProperty('production_date', $record->production_date );
+    }
+
  
     // taxonomy term IDs
     // (here we use MySQL's GROUP_CONCAT() function to merge all values into one row.)
@@ -91,7 +106,7 @@ class Show extends SqlBase {
       if (!is_null($record->tids)) {
         $row->setSourceProperty('tags', explode(',', $record->tids) );
       }
-    }
+    }*/
  
     return parent::prepareRow($row);
   }
@@ -103,45 +118,6 @@ class Show extends SqlBase {
     $ids['nid']['type'] = 'integer';
     $ids['nid']['alias'] = 'n';
     return $ids;
-  }
- 
-  /**
-   * {@inheritdoc}
-   */
-  public function bundleMigrationRequired() {
-    return FALSE;
-  }
- 
-  /**
-   * {@inheritdoc}
-   */
-  public function entityTypeId() {
-    return 'node';
-  }
- 
-  /**
-   * Returns the user base fields to be migrated.
-   *
-   * @return array
-   *   Associative array having field name as key and description as value.
-   */
-  protected function baseFields() {
-    $fields = array(
-      'nid' => $this->t('Node ID'),
-      'vid' => $this->t('Version ID'),
-      'type' => $this->t('Type'),
-      'title' => $this->t('Title'),
-      'format' => $this->t('Format'),
-      'teaser' => $this->t('Teaser'),
-      'uid' => $this->t('Authored by (uid)'),
-      'created' => $this->t('Created timestamp'),
-      'changed' => $this->t('Modified timestamp'),
-      'status' => $this->t('Published'),
-      'promote' => $this->t('Promoted to front page'),
-      'sticky' => $this->t('Sticky at top of lists'),
-      'language' => $this->t('Language (fr, en, ...)'),
-    );
-    return $fields;
   }
  
 }
