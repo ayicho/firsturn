@@ -48,9 +48,10 @@ class Show extends SqlBase {
    */
   public function fields() {
     $fields = $this->baseFields();
-    $fields['description/format'] = $this->t('Format of description');
-    $fields['description/value'] = $this->t('Full text of description');
-    $fields['description/summary'] = $this->t('Summary of description');
+    $fields['description_format'] = $this->t('Format of description');
+    $fields['description_value'] = $this->t('Full text of description');
+    $fields['description_summary'] = $this->t('Summary of description');
+    $fields['production_date'] = $this->t('Production Date');
     return $fields;
   }
  
@@ -73,25 +74,25 @@ class Show extends SqlBase {
         fld.entity_id = :nid
     ', array(':nid' => $nid));
     foreach ($result as $record) {
-      $row->setSourceProperty('description_value', $record->description_value );
-      $row->setSourceProperty('description_summary', $record->description_summary );
-      $row->setSourceProperty('description_format', $record->description_format );
+      $row->setSourceProperty('description_value', $record->field_description_value );
+      $row->setSourceProperty('description_summary', $record->field_description_summary );
+      $row->setSourceProperty('description_format', $record->field_description_format );
     }
 
 
-  /*  $result = $this->getDatabase()->query('
+    $result = $this->getDatabase()->query('
       SELECT
-        fld.field_production_date,
+        fld.field_show_production_date_value
       FROM
         {field_data_field_show_production_date} fld
       WHERE
         fld.entity_id = :nid
     ', array(':nid' => $nid));
     foreach ($result as $record) {
-      $row->setSourceProperty('production_date', $record->production_date );
+      $row->setSourceProperty('production_date', $record->field_show_production_date_value );
     }
 
- 
+/* 
     // taxonomy term IDs
     // (here we use MySQL's GROUP_CONCAT() function to merge all values into one row.)
     $result = $this->getDatabase()->query('
@@ -106,8 +107,8 @@ class Show extends SqlBase {
       if (!is_null($record->tids)) {
         $row->setSourceProperty('tags', explode(',', $record->tids) );
       }
-    }*/
- 
+    }
+ */
     return parent::prepareRow($row);
   }
  

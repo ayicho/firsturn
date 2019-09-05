@@ -20,12 +20,17 @@ process:
   promote: promote
   sticky: sticky
   'field_description/format':
-    plugin: static_map
-    bypass: true
+    plugin: default_value
+    default_value: full_html
     source: description_format
-    map:
-      1: plain_text
-      2: restricted_html
-      3: full_html
   'field_description/value': description_value
   'field_description/summary': description_summary
+  field_show_production_date:
+    plugin: sub_process
+    source: field_show_production_date
+    process:
+      value:
+        plugin: format_date
+        from_format: 'Y-m-d H:i:s'
+        to_format: 'Y-m-d'
+        source: production_date
