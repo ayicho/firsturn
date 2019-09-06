@@ -92,7 +92,7 @@ class Show extends SqlBase {
       $row->setSourceProperty('production_date', $record->field_show_production_date_value );
     }
 
-/* 
+ 
     // taxonomy term IDs
     // (here we use MySQL's GROUP_CONCAT() function to merge all values into one row.)
     $result = $this->getDatabase()->query('
@@ -105,10 +105,10 @@ class Show extends SqlBase {
     ', array(':nid' => $nid));
     foreach ($result as $record) {
       if (!is_null($record->tids)) {
-        $row->setSourceProperty('tags', explode(',', $record->tids) );
+        $row->setSourceProperty('show_tags', explode(',', $record->tids) );
       }
     }
- */
+ 
     return parent::prepareRow($row);
   }
  

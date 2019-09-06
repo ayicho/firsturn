@@ -1,0 +1,32 @@
+id: migrate_tags
+label: Migrate Tags Terms
+#migratio group
+migration_group: custom_tags
+dependencies:
+  enforced:
+    module:
+      - cm_show
+source:
+  plugin: migrate_tags
+  
+process:
+  tid: tid
+  vid: vocabulary_machine_name
+  name: name
+  description: description
+  weight: weight
+  #for migrating term heirachy
+  parent_id:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: parent
+    -
+      plugin: migration_lookup
+      migration: migrate_tags
+  parent:
+    plugin: default_value
+    default_value: 0
+    source: '@parent_id'
+destination:
+  plugin: entity:taxonomy_term

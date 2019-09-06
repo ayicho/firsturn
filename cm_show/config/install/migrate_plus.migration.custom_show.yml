@@ -25,12 +25,16 @@ process:
     source: description_format
   'field_description/value': description_value
   'field_description/summary': description_summary
-  field_show_production_date:
+  field_show_production_date_value:
     plugin: sub_process
-    source: field_show_production_date
+    source: field_show_production_date_value
     process:
       value:
         plugin: format_date
-        from_format: 'Y-m-d H:i:s'
-        to_format: 'Y-m-d'
-        source: production_date
+        from_format: 'Y-m-00\T00:00:00'
+        to_format: 'U'
+        source: value
+  field_show_tags: show_tags
+migration_dependencies:
+  required:
+    - migrate_tags
